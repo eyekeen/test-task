@@ -30,3 +30,4 @@ yarn-error.log
 /docker-*.sh text eol=lf
 /sbt-dist/bin/*.bash text eol=lf
 /sbt-dist/bin/sbt text eol=lf
+.vscode-root
