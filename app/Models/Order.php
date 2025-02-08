@@ -9,5 +9,6 @@ class Order extends Model
     protected $fillable = [
         "phone",
         "vin",
+        "status",
     ];
 }

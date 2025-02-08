@@ -77,10 +77,11 @@ class CarController extends Controller
         $order = Order::create([
             'phone' => $validated['phone'],
             'vin' => $validated['vin'],
+            'status' => 'done',
         ]);
 
         // Mail::to('admin@example.com')->send(new OrderCreated($order));
-        Mail::to('admin@example.com')->send(new OrderCreated($order));
+        Mail::to('admin@admin.com')->send(new OrderCreated($order));
 
         // Отправка задачи в очередь
         SendOrderToCrm::dispatch($order);

@@ -11,4 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/stock', [CarController::class, 'index']);
 
-Route::get('/orders', [CarController::class, 'store']);
+Route::post('/orders', [CarController::class, 'store']);
