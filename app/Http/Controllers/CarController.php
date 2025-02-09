@@ -54,6 +54,10 @@ class CarController extends Controller
             $query->where('mileage', '<=', $request->input('mileage_to'));
         }
 
+        if ($request->has('vin')) {
+            $query->where('vin', '=', $request->input('vin'));
+        }
+
         // Получение отфильтрованных данных
         $cars = $query->paginate(10);
 
