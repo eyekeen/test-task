@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Models\Car;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use App\Models\Car;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 

@@ -8,12 +8,10 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Orchid\Support\Facades\Toast;
 
 class SendOrderToCrm implements ShouldQueue
 {
     use Queueable;
-
 
     public $order;
 
@@ -32,8 +30,8 @@ class SendOrderToCrm implements ShouldQueue
     {
         $crmUrl = 'https://crm.tapir.ws/api/crm';
         $crmData = [
-            'phone' => "+7999999999",
-            'VIN' => "vin auto",
+            'phone' => '+7999999999',
+            'VIN' => 'vin auto',
         ];
 
         $maxAttempts = 30; // Максимум 30 попыток (по 10 секунд каждая = 5 минут)
@@ -63,10 +61,8 @@ class SendOrderToCrm implements ShouldQueue
             $attempt++;
         }
 
-        
-
         // Если отправка не удалась за 5 минут
-        if (!$success) {
+        if (! $success) {
             Log::error('Failed to send CRM data after 5 minutes.', ['order_id' => $this->order->id]);
 
             Mail::to('admin@admin.com')->send(new CrmErrorNotification($this->order));
@@ -79,7 +75,7 @@ class SendOrderToCrm implements ShouldQueue
     public function failed(\Throwable $exception)
     {
         // Логируем ошибку
-        Log::error('Job failed for order ID: ' . $this->order->id, ['error' => $exception->getMessage()]);
+        Log::error('Job failed for order ID: '.$this->order->id, ['error' => $exception->getMessage()]);
 
         // Обновляем статус на 'error'
         $this->order->update(['status' => 'error']);

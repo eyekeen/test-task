@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Car;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 
 class CarNewSeeder extends Seeder
@@ -21,7 +20,6 @@ class CarNewSeeder extends Seeder
         $response = Http::get($url);
 
         if ($response->successful()) {
-
 
             $cars = $response->json();
 

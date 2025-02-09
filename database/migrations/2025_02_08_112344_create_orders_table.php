@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string("phone", 255);
-            $table->string("vin", 255);
+            $table->string('phone', 255);
+            $table->string('vin', 255);
             $table->string('status', 255);
             $table->timestamps();
         });

@@ -2,9 +2,6 @@
 
 namespace App\Providers;
 
-use App\Listeners\HandleOrderFailure;
-use App\Listeners\HandleOrderSuccess;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,8 +17,5 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        
-    }
+    public function boot(): void {}
 }

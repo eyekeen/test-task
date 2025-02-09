@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Color;
+use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class RetryOrdersScreen extends Screen
@@ -29,8 +29,6 @@ class RetryOrdersScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -88,8 +86,6 @@ class RetryOrdersScreen extends Screen
 
     /**
      * Retry order and update status.
-     *
-     * @param Request $request
      */
     public function retryOrder(Request $request)
     {
@@ -103,9 +99,9 @@ class RetryOrdersScreen extends Screen
             $order->update(['status' => 'processing']);
 
             // Выводим уведомление
-            Toast::info('Order #' . $order->id . ' has been sent for processing.');
+            Toast::info('Order #'.$order->id.' has been sent for processing.');
         } catch (\Throwable $th) {
-            Toast::error('Failed to process order #' . $order->id . ': ' . $th->getMessage(), 'error');
+            Toast::error('Failed to process order #'.$order->id.': '.$th->getMessage(), 'error');
         }
     }
 }

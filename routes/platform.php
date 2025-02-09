@@ -105,16 +105,15 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 
 Route::screen('task', TaskScreen::class)
     ->name('platform.task')
-    ->breadcrumbs(function (Trail $trail){
+    ->breadcrumbs(function (Trail $trail) {
         return $trail
             ->parent('platform.index')
             ->push('Task');
     });
 
-
 Route::screen('retry-orders', RetryOrdersScreen::class)
     ->name('platform.retry-orders')
-    ->breadcrumbs(function (Trail $trail){
+    ->breadcrumbs(function (Trail $trail) {
         return $trail
             ->parent('platform.index')
             ->push('Order');

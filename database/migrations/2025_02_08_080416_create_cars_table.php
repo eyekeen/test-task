@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string("brand", 255);
-            $table->string("model", 255);
-            $table->string("vin", 255);
-            $table->integer("price");
-            $table->year("year")->nullable()->default(date("Y"));
-            $table->unsignedBigInteger("mileage")->nullable()->default(0);
+            $table->string('brand', 255);
+            $table->string('model', 255);
+            $table->string('vin', 255);
+            $table->integer('price');
+            $table->year('year')->nullable()->default(date('Y'));
+            $table->unsignedBigInteger('mileage')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -8,7 +8,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
 Route::get('/stock', [CarController::class, 'index']);
 
 Route::post('/orders', [CarController::class, 'store']);

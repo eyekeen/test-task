@@ -6,10 +6,10 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
+use Orchid\Support\Facades\Layout;
 
 class TaskScreen extends Screen
 {
@@ -27,8 +27,6 @@ class TaskScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -90,8 +88,6 @@ class TaskScreen extends Screen
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     *
      * @return void
      */
     public function create(Request $request)
@@ -101,14 +97,12 @@ class TaskScreen extends Screen
             'task.name' => 'required|max:255',
         ]);
 
-        $task = new Task();
+        $task = new Task;
         $task->name = $request->input('task.name');
         $task->save();
     }
 
     /**
-     * @param Task $task
-     *
      * @return void
      */
     public function delete(Task $task)

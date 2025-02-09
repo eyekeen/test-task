@@ -8,12 +8,11 @@ use Orchid\Screen\AsSource;
 
 class Order extends Model
 {
-
-    use HasFactory, AsSource;
+    use AsSource, HasFactory;
 
     protected $fillable = [
-        "phone",
-        "vin",
-        "status",
+        'phone',
+        'vin',
+        'status',
     ];
 }

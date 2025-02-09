@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendOrderToCrm;
-use App\Mail\CrmErrorNotification;
 use App\Mail\OrderCreated;
 use App\Models\Car;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http;
 
 class CarController extends Controller
 {
@@ -39,12 +36,12 @@ class CarController extends Controller
 
         // Фильтрация по бренду (используем LIKE)
         if ($request->has('brand')) {
-            $query->whereRaw('LOWER(brand) LIKE ?', ['%' . strtolower($request->input('brand')) . '%']);
+            $query->whereRaw('LOWER(brand) LIKE ?', ['%'.strtolower($request->input('brand')).'%']);
         }
 
         // Фильтрация по модели (используем LIKE)
         if ($request->has('model')) {
-            $query->whereRaw('LOWER(model) LIKE ?', ['%' . strtolower($request->input('model')) . '%']);
+            $query->whereRaw('LOWER(model) LIKE ?', ['%'.strtolower($request->input('model')).'%']);
         }
 
         // Фильтрация по минимальному пробегу
@@ -57,15 +54,13 @@ class CarController extends Controller
             $query->where('mileage', '<=', $request->input('mileage_to'));
         }
 
-
-
         // Получение отфильтрованных данных
         $cars = $query->paginate(10);
 
         return response()->json($cars);
     }
 
-    function store(Request $request)
+    public function store(Request $request)
     {
         // Валидация входных данных
         $validated = $request->validate([

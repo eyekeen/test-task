@@ -14,10 +14,6 @@ class PlatformProvider extends OrchidServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @param Dashboard $dashboard
-     *
-     * @return void
      */
     public function boot(Dashboard $dashboard): void
     {
@@ -42,7 +38,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Sample Screen')
                 ->icon('bs.collection')
                 ->route('platform.example')
-                ->badge(fn() => 6),
+                ->badge(fn () => 6),
 
             Menu::make('Form Elements')
                 ->icon('bs.card-list')
@@ -88,12 +84,12 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
-                ->badge(fn() => Dashboard::version(), Color::DARK),
+                ->badge(fn () => Dashboard::version(), Color::DARK),
 
             Menu::make('Orders')
                 ->icon('bag')
-                ->route('platform.retry-orders')
-                // ->title('Orders'),
+                ->route('platform.retry-orders'),
+            // ->title('Orders'),
         ];
     }
 
