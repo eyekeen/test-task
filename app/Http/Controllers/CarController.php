@@ -80,7 +80,6 @@ class CarController extends Controller
             'status' => 'done',
         ]);
 
-        // Mail::to('admin@example.com')->send(new OrderCreated($order));
         Mail::to('admin@admin.com')->send(new OrderCreated($order));
 
         // Отправка задачи в очередь

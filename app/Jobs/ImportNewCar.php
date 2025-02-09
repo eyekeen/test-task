@@ -6,6 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use App\Models\Car;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ImportNewCar implements ShouldQueue
 {
@@ -42,9 +43,9 @@ class ImportNewCar implements ShouldQueue
                 );
             }
 
-            \Log::info('New cars imported successfully.');
+            Log::info('New cars imported successfully.');
         } else {
-            \Log::error('Failed to fetch new cars data.');
+            Log::error('Failed to fetch new cars data.');
         }
     }
 }

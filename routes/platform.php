@@ -12,6 +12,7 @@ use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\RetryOrdersScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\TaskScreen;
@@ -110,4 +111,12 @@ Route::screen('task', TaskScreen::class)
             ->push('Task');
     });
 
+
+Route::screen('retry-orders', RetryOrdersScreen::class)
+    ->name('platform.retry-orders')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.index')
+            ->push('Order');
+    });
 // Route::screen('idea', Idea::class, 'platform.screens.idea');

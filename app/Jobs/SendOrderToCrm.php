@@ -8,6 +8,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Orchid\Support\Facades\Toast;
 
 class SendOrderToCrm implements ShouldQueue
 {
@@ -41,10 +42,12 @@ class SendOrderToCrm implements ShouldQueue
 
         while ($attempt < $maxAttempts) {
             $response = Http::post($crmUrl, $crmData);
-
             if ($response->successful()) {
                 // Успешная отправка
                 Log::info('CRM data sent successfully.', ['order_id' => $this->order->id]);
+
+                // Обновляем статус на 'done'
+                $this->order->update(['status' => 'done']);
                 $success = true;
                 break;
             } elseif ($response->status() === 500) {
@@ -59,13 +62,26 @@ class SendOrderToCrm implements ShouldQueue
 
             $attempt++;
         }
+
         
+
         // Если отправка не удалась за 5 минут
         if (!$success) {
             Log::error('Failed to send CRM data after 5 minutes.', ['order_id' => $this->order->id]);
 
-            // Отправка письма об ошибке
             Mail::to('admin@admin.com')->send(new CrmErrorNotification($this->order));
+
+            // Обновляем статус на 'error'
+            $this->order->update(['status' => 'error']);
         }
+    }
+
+    public function failed(\Throwable $exception)
+    {
+        // Логируем ошибку
+        Log::error('Job failed for order ID: ' . $this->order->id, ['error' => $exception->getMessage()]);
+
+        // Обновляем статус на 'error'
+        $this->order->update(['status' => 'error']);
     }
 }
