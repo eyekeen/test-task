@@ -9,6 +9,10 @@
  ```
  docker-compose exec app cp .env.example .env
  ```
+ Установка зависимостей:
+ ```
+ docker-compose exec app composer install
+ ```
  
  Применяем миграции:
  ```
