@@ -34,11 +34,13 @@
  ```
  docker-compose exec app php artisan queue:work
  ```
-http://localhost:8080/admin - orchid
-http://localhost:8025 - mailhog
-http://localhost:8081 - phpMyAdmin
 
-- user - laravel_user
+- http://localhost:8080/admin - orchid
+- http://localhost:8025 - mailhog
+- http://localhost:8081 - phpMyAdmin
+
+mysql user:
+- name - laravel_user
 - password - laravel_password
 
 ## api
