@@ -6,7 +6,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     zip \
-    unzip
+    unzip \
+    cron \
+    nano    
 
 # Установка расширений PHP
 RUN docker-php-ext-install pdo_mysql zip
@@ -25,12 +27,16 @@ RUN mkdir -p /var/www/html/storage/framework/{views,cache,sessions} /var/www/htm
 RUN chown -R laravel:laravel /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# # Создание необходимых директорий, если они отсутствуют
-# RUN mkdir -p /var/www/html/storage/framework/{views,cache,sessions} /var/www/html/bootstrap/cache
 
-# # Установка прав доступа
-# RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-# RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Настройка cron
+COPY ./cron/laravel-cron /etc/cron.d/laravel-cron
+RUN chmod 0644 /etc/cron.d/laravel-cron
+RUN chown root:root /etc/cron.d/laravel-cron
+RUN crontab /etc/cron.d/laravel-cron
 
 # Установка рабочей директории
 WORKDIR /var/www/html
+
+# Запуск cron и PHP-FPM
+CMD cron && php-fpm

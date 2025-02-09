@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Car;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ImportNewCars extends Command
 {
@@ -45,9 +46,9 @@ class ImportNewCars extends Command
                 );
             }
 
-            $this->info('New cars imported successfully.');
+            Log::info('Cron job executed successfully.');
         } else {
-            $this->error('Failed to fetch new cars data.');
+            Log::error('Failed to fetch new cars data.');
         }
     }
 }

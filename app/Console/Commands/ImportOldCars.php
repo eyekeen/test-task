@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Car;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ImportOldCars extends Command
 {
@@ -47,9 +48,9 @@ class ImportOldCars extends Command
                 );
             }
 
-            $this->info('Old cars imported successfully.');
+            Log::info('Old cars imported successfully.');
         } else {
-            $this->error('Failed to fetch old cars data.');
+            Log::error('Failed to fetch old cars data.');
         }
     }
 }
