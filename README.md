@@ -7,7 +7,7 @@
  
  Копируем файл с переменными окружения:
  ```
- docker-compose exec cp .env.example .env
+ docker-compose exec app cp .env.example .env
  ```
  
  Применяем миграции:
@@ -22,7 +22,7 @@
  
 Создаем админа для админ-панели:
  ```
- docker-compose exec php artisan orchid:admin admin admin@admin.com password
+ docker-compose exec app php artisan orchid:admin admin admin@admin.com password
  ```
 
 
